@@ -296,42 +296,43 @@ mv.app.main=function () {
     var isStart = false;
     function touchLi() {
         var oLi = musicW.getElementsByTagName('li');
-
         var mLength = oLi.length;
         for (var i = 0; i < mLength; i++) {
             oLi[i].addEventListener('touchstart', function (e) {
                 if (isStart) {
-                var name = this.getElementsByTagName('strong')[0].innerHTML;
-                sIndex = this.index;
-                borderColor(this.index);
-               if (this.index === isSecond) {
-                   css(musicW, 'rotateY', 90)
-                   css(musicW, 'opacity', 0)
-                   css(mFace, 'translateX', 0);
-                   footer.style.display = 'none';
-                   point.style.display = 'none';
-                   setTimeout(function () {
-                       musicW.style.display = 'none'
-                   }, 1000)
-                  
-               }
-               if (isSecond === '' || (this.index != isSecond)) {
-                   changeMusic(name,this.index);
-               }
-               isSecond = this.index;
+                    var name = this.getElementsByTagName('strong')[0].innerHTML;
+                    sIndex = this.index;
+                    borderColor(this.index);
+                    console.log(this.index+','+isSecond)
+                   if (this.index === isSecond) {
+                       css(musicW, 'rotateY', 90)
+                       css(musicW, 'opacity', 0)
+                       css(mFace, 'translateX', 0);
+                       footer.style.display = 'none';
+                       point.style.display = 'none';
+                       setTimeout(function () {
+                           musicW.style.display = 'none'
+                       }, 1000)
 
+                   }
+                   if (isSecond === '' || (this.index != isSecond)) {
+                       changeMusic(name, this.index);
+                       isSecond = this.index;
+                   }
                 }
             })
+           
         }
     }
 
-    touchLi()
+    
     //滑屏
     mv.tool.myScroll({
         el:musicW,
         dir: 'y',
         end:function (arr) {
             isStart = arr;
+            touchLi()
         }
     })
 
@@ -339,6 +340,7 @@ mv.app.main=function () {
         musicW.style.display = 'block';
         footer.style.display = 'block';
         point.style.display = 'block';
+        
         setTimeout(function () {
             css(musicW, 'rotateY', 0)
             css(musicW, 'opacity', 100)
@@ -441,9 +443,7 @@ mv.tool.myScroll=function(init) {
             x: Math.round(touch.pageX),
             y: Math.round(touch.pageY)
         }
-        if(lastPoint.x == nowPoint.x && lastPoint.y == nowPoint.y){
-            return;
-        }
+        
         var dis = {
             x: nowPoint.x - startPoint.x,
             y: nowPoint.y - startPoint.y
@@ -462,6 +462,7 @@ mv.tool.myScroll=function(init) {
         lastPoint.x = nowPoint.x;
         lastPoint.y = nowPoint.y;
     });
+
     init.el.addEventListener('touchend', function (e) {
         var isStart = false;
         if (lastPoint.x == startPoint.x && lastPoint.y == startPoint.y) {
@@ -529,8 +530,8 @@ mv.tool.shade = function () {
     var load = shade.querySelector('.loading');
     var clip = load.querySelector('.clip');
     var now = load.querySelector('.now');
-    var clipH = load.offsetHeight;
-    var loadW = load.offsetWidth;
+    var clipH = css(load, 'height');
+    var loadW = css(load, 'width');
  
     var selectW = css(select, 'width');
      css(select,'width',0)
@@ -586,8 +587,9 @@ mv.tool.shade = function () {
      }
      
      function loading(num, length) {
-         var scale=(num /length).toFixed(2);
-        
+         var scale = (num / length).toFixed(2);
+
+        // console.log('rect(0px,' + Math.round(scale * loadW) + 'px,' + clipH + 'px,0px)' )
          clip.style.clip = 'rect(0px,' + Math.round(scale * loadW )+ 'px,' + clipH + 'px,0px)'
          now.innerHTML = Math.round(scale * 100) + '%';
      }
