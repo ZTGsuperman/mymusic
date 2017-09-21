@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,user-scalable=no" />
+   <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css" />
+    <link href="css/style.css" rel="stylesheet" />
+    <title></title>
+      <script src="js/data.js"></script>
+      <script src="js/m.Tween.js"></script>
+      <script src="js/tool.js"></script>
+    <script>
+        (function () {
+            setRem()
+            window.addEventListener("orientation" in window ? "deviceorientation" : "resize", setRem);
+            function setRem() {
+                var html = document.documentElement;
+                var htmlW = html.getBoundingClientRect().width;
+                html.style.fontSize = htmlW / 15 + 'px';
+            }
+        })()
+       document.addEventListener('touchstart', function (ev) {
+          ev.preventDefault();
+      })
+    </script>
+</head>
+<body>
+        
+  
+
+    <div id="perspective">
+
+        <div id="shade">
+            
+            <div class="hitW">
+                  <div class="myHit">
+                      <p>为避免消耗你的流量,请选择是否只加载第一首歌</p>
+                      <span class="yes btn">是</span>
+                      <span class="no btn">否</span>
+                  </div>
+                 
+                <div id="select">
+                    <div class="left-top sameStyle"></div>
+                    <div class="right-top sameStyle"></div>
+                    <div class="right-bottom sameStyle"></div>
+                    <div class="left-bottom sameStyle"></div>
+                </div>
+
+            </div>
+
+            <div class="loading">
+                <h4>正在加载....</h4>
+                <span class="clip"></span>
+                <span class="now">0%</span>
+            </div>
+        </div>
+
+         <header class="point">二次单击切换到歌词页面</header>
+      
+        <div class="music_list">
+            <ul>
+               <!-- <li>
+                    <strong class="name">十年</strong>
+                    <span class="songer">陈奕迅</span>
+                </li>-->
+            </ul>
+        </div>
+
+        <!--播放界面-->
+        <div class="music-face">
+               <div class="inner">
+                        <div class="face-header">
+                            <i class="fa fa-arrow-left goBack"></i>
+                            <div class="music-msg">
+                                <div class="moveTxt">
+                                    <h3>唐人-孙子涵</h3>
+                                </div>
+                                <em>孙子涵</em>
+                            </div>
+                        </div>
+
+
+                        <div class="songWord">
+                            <div class="voice">
+                                <i class="fa fa-volume-up" id="voiceLogo"></i>
+                                <span class="voice-rec">
+                                    <a class="clip"></a>
+                                    <a href="#" class="move-dot"></a>
+                                </span>
+                            </div>
+                            <div class="song-face">
+                                <div class="word-wrap">
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="face-bottom">
+                            <div class="prog">
+                                <h3 class="startTime">00:00</h3>
+                                <span class="prog-rec">
+                                    <a class="clip"></a>
+                                    <a href="#" class="move-dot"></a>
+                                </span>
+                                <h3 class="endTime">03:21</h3>
+                            </div>
+
+                            <div class="music_ctrl">
+                                <i class="fa fa-step-backward" id="prev"></i>
+                                <i class="fa fa-play" id="btnOff"></i>
+                                <i class="fa fa-step-forward" id="next"></i>
+                            </div>
+
+
+                      </div>
+            </div>
+            
+            <div class="shade"></div>
+        </div>
+
+        <!---->
+       <footer>
+           <img src="music/musicTitle/pic1.jpg" alt="pic" class="musicImg" />
+            <p>
+                <strong class="musicName">安河桥</strong>
+                <em class="footer_aut">宋冬野</em>
+           
+                <i class="fa fa-play" id="btnOff"></i>
+             </p>
+          
+       </footer>
+
+    </div>
+
+
+    <audio id="myMusic" src="music/安和桥.mp3"></audio>
+
+ 
+    <script src="js/controlMusic.js"></script>
+
+</body>
+</html>

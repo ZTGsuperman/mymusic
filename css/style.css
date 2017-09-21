@@ -1,0 +1,538 @@
+* {
+  margin: auto;
+  padding: 0;
+}
+input,
+textarea {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+}
+textarea {
+  resize: none;
+  overflow: auto;
+}
+em {
+  font-style: normal;
+}
+img {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+span {
+  margin: 0;
+  padding: 0;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+h1,
+p,
+h2,
+h4 {
+  margin: 0;
+  font-weight: normal;
+}
+a,
+input {
+  -webkit-tap-highlight-color: rgba(255, 0, 0, 0);
+  text-decoration: none;
+}
+img {
+  border: none;
+  vertical-align: top;
+  margin: 0;
+  padding: 0;
+}
+html {
+  height: 100%;
+  position: relative;
+}
+body {
+  height: 100%;
+  margin: 0;
+  position: relative;
+  background: #f0f4f3;
+  font-family: Arial, "微软雅黑";
+  color: #666;
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+body {
+  overflow: hidden;
+  background: #000000;
+}
+#perspective {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  height: 100%;
+  transform-style: preserve-3d;
+  /*场景3d*/
+  perspective: 16rem;
+  /*场景景深*/
+}
+#shade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: url(../images/load_bg.jpg) no-repeat;
+  z-index: 10;
+  color: #fff;
+  text-align: center;
+  background-size: cover;
+}
+#shade .hitW {
+  width: 12rem;
+  height: 6rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -6rem;
+  margin-left: -6rem;
+  text-align: center;
+  overflow: hidden;
+}
+#shade .myHit {
+  font-size: 0.92rem;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  transition: 0.5s;
+  z-index: 2;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+#shade .myHit p {
+  margin-top: 0.4rem;
+  color: #feae01;
+}
+#shade .myHit .btn {
+  margin: 1rem 1.4rem;
+  display: inline-block;
+  width: 2rem;
+  height: 1.2rem;
+  text-align: center;
+  line-height: 1.2rem;
+}
+#shade .active {
+  border: 0.08rem solid #66ff00;
+}
+#select {
+  position: absolute;
+  top: 0.16rem;
+  left: 0.16rem;
+  transform: translateX(50%);
+  width: 11.6rem;
+  height: 5.6rem;
+  border: 2px solid #6f0;
+  background: rgba(5, 46, 98, 0.2);
+  display: none;
+  transition: 1s;
+  z-index: 1;
+}
+.sameStyle {
+  position: absolute;
+  width: 1.2rem;
+  height: 1.2rem;
+}
+.left-top {
+  top: -0.16rem;
+  left: -0.16rem;
+  border-top: 0.16rem solid #66ff00;
+  border-left: 0.16rem solid #66ff00;
+}
+.right-top {
+  top: -0.16rem;
+  right: -0.16rem;
+  border-top: 0.16rem solid #66ff00;
+  border-right: 0.08rem solid #66ff00;
+}
+.left-bottom {
+  bottom: -0.16rem;
+  left: -0.16rem;
+  border-left: 0.16rem solid #66ff00;
+  border-bottom: 0.16rem solid #66ff00;
+}
+.right-bottom {
+  bottom: -0.16rem;
+  right: -0.16rem;
+  border-right: 0.16rem solid #66ff00;
+  border-bottom: 0.16rem solid #66ff00;
+}
+#shade .loading {
+  position: absolute;
+  width: 12rem;
+  height: 0.8rem;
+  border-radius: 0.8rem;
+  background: #ccc;
+  top: 50%;
+  left: 50%;
+  margin-top: -0.4rem;
+  margin-left: -6rem;
+  display: none;
+}
+#shade .loading .clip {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: red;
+  clip: rect(0rem 0rem 0.8rem 0rem);
+  border-radius: 0.4rem;
+  z-index: 1;
+}
+#shade .loading .now {
+  font-size: 0.68rem;
+  z-index: 2;
+  position: absolute;
+  line-height: 0.8rem;
+}
+#shade .loading h4 {
+  position: absolute;
+  left: 20%;
+  top: -1.2rem;
+  font-size: 0.96rem;
+  color: #ccc;
+}
+.point {
+  width: 100%;
+  height: 1.4rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: center;
+  color: #28abe1;
+  background: #15191c;
+  z-index: 3;
+  line-height: 1.4rem;
+  font-size: 0.48rem;
+  letter-spacing: 0.08rem;
+}
+.music_list {
+  position: absolute;
+  top: 1.4rem;
+  left: 0;
+  right: 0;
+  bottom: 2.6rem;
+  transition: 1s;
+  z-index: 2;
+  background: url(../images/bg.gif) no-repeat;
+  background-size: cover;
+  transform-origin: left center;
+}
+.music_list ul {
+  position: absolute;
+  width: 100%;
+}
+.music_list ul li {
+  height: 2.2rem;
+  border-bottom: 0.08rem solid #cccccc;
+  text-indent: 0.6rem;
+  border-left: 0.2rem solid transparent;
+}
+.music_list ul .name {
+  color: #fff;
+  font-size: 0.68rem;
+  display: block;
+  padding-top: 0.2rem;
+}
+.music_list ul .songer {
+  color: #838584;
+  font-size: 0.6rem;
+  display: block;
+}
+footer {
+  position: absolute;
+  height: 2.2rem;
+  background: #15191c;
+  width: 100%;
+  bottom: 0;
+  border-bottom: 0.4rem solid #217192;
+  z-index: 3;
+}
+footer .musicImg {
+  width: 1.96rem;
+  height: 1.96rem;
+  border-radius: 0.98rem;
+  position: absolute;
+  left: 0.6rem;
+  top: 0.24rem;
+  background-size: cover;
+}
+footer p {
+  margin-left: 3.4rem;
+  height: 100%;
+  position: relative;
+}
+footer p .musicName {
+  font-size: 0.56rem;
+  color: #fff;
+}
+footer .footer_aut {
+  color: #747371;
+  font-size: 0.48rem;
+  display: block;
+}
+footer #btnOff {
+  display: inline-block;
+  width: 1.2rem;
+  height: 1.2rem;
+  border: 0.08rem solid #24ace0;
+  border-radius: 0.68rem;
+  color: #24ace0;
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  font-size: 0.48rem;
+  line-height: 1.2rem;
+  text-align: center;
+}
+/*音乐界面*/
+.music-face {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: #6f5637;
+  transform: translateX(100%);
+  transition: 0.5s;
+  background: url(../images/music_bg.jpg) no-repeat;
+  background-size: cover;
+  z-index: 1;
+  transition: 1s;
+}
+.inner {
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+.shade {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: #000;
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+  z-index: 1;
+}
+.face-header {
+  width: 100%;
+  height: 3.06rem;
+  z-index: 2;
+}
+.face-header i {
+  line-height: 4rem;
+  color: #fff;
+  font-size: 0.72rem;
+  display: inline-block;
+}
+.face-header i:nth-of-type(1) {
+  float: left;
+  margin-left: 0.68rem;
+}
+.face-header i:nth-of-type(2) {
+  float: right;
+  margin-right: 0.44rem;
+}
+.music-msg {
+  height: 100%;
+  display: inline-block;
+  margin-left: 0.7rem;
+  width: 10rem;
+  overflow: hidden;
+}
+.moveTxt {
+  width: 200%;
+  position: relative;
+  margin-top: 1.3rem;
+}
+.music-msg h3 {
+  color: #fff;
+  font-size: 0.6rem;
+  position: absolute;
+}
+.music-msg h3:nth-of-type(1) {
+  top: 0;
+  left: 0;
+}
+.music-msg h3:nth-of-type(2) {
+  top: 0;
+  left: 10.2rem;
+}
+.music-msg em {
+  display: block;
+  font-size: 0.48rem;
+  color: #a69a82;
+  margin-top: 2.4rem;
+}
+.face-bottom {
+  position: absolute;
+  height: 4rem;
+  width: 100%;
+  bottom: 0;
+}
+.prog {
+  height: 1.2rem;
+  width: 100%;
+  position: absolute;
+  bottom: 3.3rem;
+  padding: 0 0.76rem;
+  line-height: 1.2rem;
+}
+.prog h3 {
+  font-size: 0.4rem;
+  color: #fff;
+  display: inline-block;
+}
+.prog h3:nth-of-type(1) {
+  color: #a8a4a3;
+}
+.prog span {
+  width: 10.34rem;
+  height: 0.16rem;
+  background: #fff;
+  display: inline-block;
+  position: relative;
+  margin: 0 0.24rem;
+  border-radius: 0.08rem;
+}
+.clip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0.16rem;
+  background: #28abe1;
+  border-radius: 0.08rem;
+  clip: rect(0rem, 0rem, 0.16rem, 0rem);
+  display: inline-block;
+}
+.prog span .move-dot {
+  position: absolute;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 0.2rem;
+  background: #28abe1;
+  top: -0.12rem;
+  left: -0.14rem;
+}
+.music_ctrl {
+  width: 100%;
+  height: 3.24rem;
+  padding: 0 0.7rem;
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 0;
+  line-height: 2.6rem;
+  text-align: center;
+}
+.music_ctrl i {
+  font-size: 0.56rem;
+  color: #28abe1;
+  margin: 0 0.6rem;
+  border: 0.08rem solid #28abe1;
+  text-align: center;
+  display: inline-block;
+}
+.music_ctrl #next,
+.music_ctrl #prev {
+  width: 1.32rem;
+  height: 1.32rem;
+  border-radius: 0.74rem;
+  line-height: 1.32rem;
+  font-size: 0.52rem;
+}
+.music_ctrl #btnOff {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 1.08rem;
+  line-height: 2rem;
+  font-size: 0.8rem;
+}
+/*歌词*/
+.songWord {
+  overflow: auto;
+  position: absolute;
+  top: 3.06rem;
+  bottom: 4.66rem;
+  right: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: 104;
+  transition: 0.2s;
+  -webkit-animation: 0.2s;
+  -moz-animation: 0.2s;
+}
+.voice {
+  width: 100%;
+  height: 0.72rem;
+}
+.voice span {
+  width: 11rem;
+  height: 0.12rem;
+  border-radius: 0.06rem;
+  background: #fff;
+  display: inline-block;
+  position: absolute;
+  margin-top: 0.5rem;
+}
+.voice i {
+  font-size: 0.56rem;
+  color: #a6a5a3;
+  margin: 0.3rem 0.7rem 0 0.9rem;
+  display: inline-block;
+  float: left;
+}
+.voice .clip {
+  clip: rect(0rem, 6rem, 0.12rem, 0rem);
+  height: 0.12rem;
+  top: 0rem;
+  border-radius: 0.05rem;
+}
+.voice .move-dot {
+  width: 0.32rem;
+  height: 0.32rem;
+  border-radius: 0.16rem;
+  position: absolute;
+  display: inline-block;
+  top: -0.1rem;
+  left: 6rem;
+  background: #28abe1;
+}
+.song-face {
+  position: absolute;
+  top: 0.9rem;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+.word-wrap {
+  position: absolute;
+  top: 0;
+  overflow: auto;
+  width: 100%;
+  transition: 0.6s;
+  -moz-animation: 0.6s;
+  -webkit-animation: 0.6s;
+}
+.songWord p {
+  font-size: 0.6rem;
+  color: #a1a3a2;
+  text-align: center;
+  line-height: 1.2rem;
+}
