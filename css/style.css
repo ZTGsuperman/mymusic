@@ -108,6 +108,7 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
+  -webkit-transform: transition3d(0, 0, 0);
 }
 #shade .myHit p {
   margin-top: 0.4rem;
@@ -136,6 +137,7 @@ body {
   display: none;
   transition: 1s;
   z-index: 1;
+  -webkit-transform: transition3d(0, 0, 0);
 }
 .sameStyle {
   position: absolute;
@@ -177,6 +179,7 @@ body {
   margin-top: -0.4rem;
   margin-left: -6rem;
   display: none;
+  -webkit-transform: transition3d(0, 0, 0);
 }
 #shade .loading .clip {
   position: absolute;
@@ -227,6 +230,7 @@ body {
   background: url(../images/bg.gif) no-repeat;
   background-size: cover;
   transform-origin: left center;
+  -webkit-transform: transition3d(0, 0, 0);
 }
 .music_list ul {
   position: absolute;
@@ -309,6 +313,7 @@ footer #btnOff {
   background-size: cover;
   z-index: 1;
   transition: 1s;
+  -webkit-transform: transition3d(0, 0, 0);
 }
 .inner {
   z-index: 2;
@@ -328,6 +333,7 @@ footer #btnOff {
   opacity: 0.6;
   filter: alpha(opacity=60);
   z-index: 1;
+  -webkit-transform: transition3d(0, 0, 0);
 }
 .face-header {
   width: 100%;
