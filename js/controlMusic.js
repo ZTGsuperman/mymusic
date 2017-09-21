@@ -23,8 +23,6 @@ mv.app.main=function () {
     var endTime = document.querySelector(".endTime"); // 音乐总时间
     var starTime = document.querySelector(".startTime"); //音乐已播放时间
 
-   
-
     var musicVoice = document.querySelector(".songWord")
     var voiceRec = musicVoice.querySelector('.voice-rec');
     var voiceClip = voiceRec.querySelector('.clip');
@@ -42,8 +40,8 @@ mv.app.main=function () {
     var point = document.querySelector('.point');
 
     var proC = clip.offsetHeight;           //进度条的宽度
-    var vioC = voiceRec.offsetHeisght;
-
+    var vioC = voiceRec.offsetHeight;
+  
     var timer = null;
     //暂停按钮事件
     for (var i = 0; i < btnOff.length; i++) {
@@ -185,6 +183,23 @@ mv.app.main=function () {
         })
     }
 
+    //调节音量
+    setVieo()
+    function setVieo() {
+        drag(voiceDot, "voice");
+        addEvent(voiceLogo, "touchstart", function (ev) {
+            if (myMusic.muted) {                         //设置静音切换
+                addClass(voiceLogo, "fa-volume-up");
+                removeClass(voiceLogo, "fa fa-volume-off");
+                myMusic.muted = false;
+            } else {
+                removeClass(voiceLogo, "fa-volume-up");
+                addClass(voiceLogo, "fa-volume-off");
+                myMusic.muted = true;
+            }
+            ev.stopPropagation();
+        })
+    }
     //获取进度条 
     getProg()
     function getProg() {
@@ -222,7 +237,7 @@ mv.app.main=function () {
                             clip.style.clip = "rect(0px," + obj.offsetLeft + "px," + proC + "px ,0px)";
                         }
                         else if (arr && arr === "voice") {   //当拖动的是声音时 
-                            voiceClip.style.clip = "rect(0px," + obj.offsetLeft + "px," + vioC + "px ,0px)";
+                            voiceClip.style.clip = "rect(0px," +obj.offsetLeft + "px," + vioC + "px ,0px)";
                             myMusic.volume = scale;        //音量
                             voiceDot.style.display = "block";
                         }
@@ -241,6 +256,36 @@ mv.app.main=function () {
                 ev.stopPropagation();
         })
      }
+
+    //单击音量和进度条跳转
+    schedule(voiceRec, 'voice')
+    schedule(prog, 'prog')
+    function schedule(obj ,arr) {
+        var objW = obj.offsetWidth;
+        var scale = 0;
+        obj.addEventListener('touchend', function (ev) {
+            var touch= ev || window.event;
+            var pageX = touch.changedTouches[0].pageX
+
+            var disX = pageX - obj.offsetLeft;
+
+            scale = (disX / objW).toFixed(2);
+
+            if (arr && arr === "prog") {    //当拖动的是进度条时
+                myMusic.currentTime = scale * myMusic.duration;
+                moveDot.style.left = disX +'px';
+                clip.style.clip = "rect(0px," +disX + "px," + proC + "px ,0px)";
+            }
+            else if (arr && arr === "voice") {   //当拖动的是声音时 
+                voiceClip.style.clip = "rect(0px," + disX + "px," + vioC + "px ,0px)";
+                voiceDot.style.left = disX+'px';
+                myMusic.volume = scale;        //音量
+
+            }
+        })
+
+    }
+
 
     //获取歌词
        function getWord(word) {

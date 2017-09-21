@@ -24,7 +24,7 @@
                word: "化身孤岛的鲸"
            },
          {
-             name: "平凡之路 + See You Again",
+             name: "朴树 - 平凡之路(电影版)",
              title: "pic5.jpg",
              singer: "张信哲",
              word: "平凡之路"
