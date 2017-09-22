@@ -87,6 +87,7 @@ body {
   color: #fff;
   text-align: center;
   background-size: cover;
+  transition: 0.5s;
 }
 #shade .hitW {
   width: 12rem;
@@ -100,7 +101,7 @@ body {
   overflow: hidden;
 }
 #shade .myHit {
-  font-size: 0.92rem;
+  font-size: 0.8rem;
   opacity: 0;
   filter: alpha(opacity=0);
   transition: 0.5s;
@@ -113,14 +114,22 @@ body {
 #shade .myHit p {
   margin-top: 0.4rem;
   color: #feae01;
+  padding: 0.2rem;
+  box-sizing: border-box;
+}
+#shade .myHit p strong {
+  display: block;
 }
 #shade .myHit .btn {
-  margin: 1rem 1.4rem;
+  margin: 0.4rem 0 0;
   display: inline-block;
-  width: 2rem;
+  width: 4rem;
   height: 1.2rem;
   text-align: center;
   line-height: 1.2rem;
+}
+#shade .hitw .yes {
+  font-size: 0.8rem;
 }
 #shade .active {
   border: 0.08rem solid #66ff00;

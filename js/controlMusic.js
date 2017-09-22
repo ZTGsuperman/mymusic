@@ -538,7 +538,7 @@ mv.tool.myScroll=function(init) {
 
 }
 
-mv.tool.load = function (loading,loadend ,isAll) {
+mv.tool.load = function (loading,loadend) {
     var music=[];
     var num = 0;
    
@@ -546,7 +546,7 @@ mv.tool.load = function (loading,loadend ,isAll) {
         music.push('music/' + mList[i].name + '.mp3');
     }
 
-    var length=isAll? music.length:1
+  //  var length=isAll? music.length:1
 
     load()
     function load() {
@@ -554,18 +554,16 @@ mv.tool.load = function (loading,loadend ,isAll) {
         auto.src = music[num];
         auto.preload='none';
         auto.addEventListener('loadstart', function () {
-            if (num > length - 1) {
+            if (num > music.length - 1) {
                 loadend && loadend();
-               
             } else {
                 load()
                
-                loading && loading(num + 1,length)
+                loading && loading(num + 1, music.length)
             }
             num++;
         })
     }
-
 
 }
 
@@ -575,11 +573,7 @@ mv.tool.shade = function () {
     var myHit = shade.querySelector('.myHit');
     var select = shade.querySelector('#select');
 
-    var load = shade.querySelector('.loading');
-    var clip = load.querySelector('.clip');
-    var now = load.querySelector('.now');
-    var clipH = css(load, 'height');
-    var loadW = css(load, 'width');
+  
  
     var selectW = css(select, 'width');
      css(select,'width',0)
@@ -597,27 +591,16 @@ mv.tool.shade = function () {
 
     //单击按钮；
      var yes = myHit.querySelector('.yes');
-     var no = myHit.querySelector('.no');
-     var isAll = false;
-     var isClick = false;
 
+     var isClick = false;
      yes.addEventListener('touchstart', function () {
-         isAll = false;
          addClass(yes, 'active');
          isClick = true;
          setTimeout(function () {
              clickFn()
-         }, 500)
+         }, 300)
      })
 
-     no.addEventListener('touchstart', function () {
-         isAll = true;
-         addClass(no, 'active');
-         isClick = true;
-         setTimeout(function () {
-             clickFn()
-         }, 500)
-     })
     
      function clickFn() {
          if (isClick) {
@@ -627,21 +610,21 @@ mv.tool.shade = function () {
            setTimeout(function(){
                select.style.display = 'none';
                myHit.style.display = 'none';
-               load.style.display = 'block';
-               mv.tool.load(loading, loadend, isAll);
+               css(shade,'opacity',0)
+               mv.tool.load(loading,loadend);
            },1000)
            
          }
      }
      
      function loading(num, length) {
-         var scale = (num / length).toFixed(2);
-         clip.style.clip = 'rect(0px,' + Math.round(scale * loadW )+ 'px,' + clipH + 'px,0px)'
-         now.innerHTML = Math.round(scale * 100) + '%';
+        
      }
 
      function loadend() {
-         shade.style.display = 'none'
+         setTimeout(function () {
+             shade.style.display = 'none'
+         }, 500)
      }
 
 }

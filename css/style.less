@@ -26,16 +26,17 @@ body{overflow:hidden;background:#000}
 #perspective{position:relative;width:100%;overflow:hidden;height:100%; transform-style:preserve-3d;/*场景3d*/perspective:800/@r;/*场景景深*/}
 
 #shade{position:absolute;top:0;left:0;bottom:0;right:0;background:url(../images/load_bg.jpg) no-repeat;z-index:10;color:#fff;text-align:center;
-       background-size:cover
+       background-size:cover;transition:0.5s;
 }
 
 #shade .hitW{ width:600/@r;height:300/@r;position:absolute;top:50%;left:50%;margin-top:-300/@r;margin-left:-300/@r;text-align:center;
               overflow:hidden
 }
-#shade .myHit{ font-size:46/@r;opacity:0;filter:alpha(opacity=0);transition:0.5s;z-index:2;position:absolute;width:100%;height:100%; -webkit-transform:transition3d(0,0,0)}
-#shade .myHit p{margin-top:20/@r;color:#feae01}
-#shade .myHit .btn{ margin:50/@r 70/@r;display:inline-block;width:100/@r;height:60/@r;text-align:center;line-height:60/@r}
-#shade .hitw .yes{}
+#shade .myHit{ font-size:40/@r;opacity:0;filter:alpha(opacity=0);transition:0.5s;z-index:2;position:absolute;width:100%;height:100%; -webkit-transform:transition3d(0,0,0)}
+#shade .myHit p{margin-top:20/@r;color:#feae01;padding:10/@r;box-sizing:border-box}
+#shade .myHit p strong{display:block}
+#shade .myHit .btn{margin:20/@r 0 0; display:inline-block;width:200/@r;height:60/@r;text-align:center;line-height:60/@r}
+#shade .hitw .yes{font-size:40/@r;}
 #shade .hitw .no{}
 #shade .active{border:4/@r solid #6f0}
 
