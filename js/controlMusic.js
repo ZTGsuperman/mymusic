@@ -551,12 +551,15 @@ mv.tool.load = function (loading,loadend ,isAll) {
     load()
     function load() {
         var auto = new Audio();
-        auto.src = music[num]
-        auto.addEventListener('canplaythrough', function () {
+        auto.src = music[num];
+        auto.preload='none';
+        auto.addEventListener('loadstart', function () {
             if (num > length - 1) {
                 loadend && loadend();
+               
             } else {
                 load()
+               
                 loading && loading(num + 1,length)
             }
             num++;
@@ -633,8 +636,6 @@ mv.tool.shade = function () {
      
      function loading(num, length) {
          var scale = (num / length).toFixed(2);
-
-        // console.log('rect(0px,' + Math.round(scale * loadW) + 'px,' + clipH + 'px,0px)' )
          clip.style.clip = 'rect(0px,' + Math.round(scale * loadW )+ 'px,' + clipH + 'px,0px)'
          now.innerHTML = Math.round(scale * 100) + '%';
      }
