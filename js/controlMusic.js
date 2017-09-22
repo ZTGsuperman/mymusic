@@ -338,47 +338,39 @@ mv.app.main=function () {
    
     var isClick = false;
     var isSecond = '';
-    var isStart = false;
-    function touchLi() {
         var oLi = musicW.getElementsByTagName('li');
         var mLength = oLi.length;
         for (var i = 0; i < mLength; i++) {
-            oLi[i].addEventListener('touchstart', function (e) {
-                if (isStart) {
-                    var name = this.getElementsByTagName('strong')[0].innerHTML;
-                    sIndex = this.index;
-                    borderColor(this.index);
-                    console.log(this.index+','+isSecond)
-                   if (this.index === isSecond) {
-                       css(musicW, 'rotateY', 90)
-                       css(musicW, 'opacity', 0)
-                       css(mFace, 'translateX', 0);
-                       footer.style.display = 'none';
-                       point.style.display = 'none';
-                       setTimeout(function () {
-                           musicW.style.display = 'none'
-                       }, 1000)
+            mv.tool.tab(oLi[i], function () {
 
-                   }
-                   if (isSecond === '' || (this.index != isSecond)) {
-                       changeMusic(name, this.index);
-                       isSecond = this.index;
-                   }
+                var name = this.getElementsByTagName('strong')[0].innerHTML;
+                sIndex = this.index;
+                borderColor(this.index);
+                console.log(this.index + ',' + isSecond)
+                if (this.index === isSecond) {
+                    css(musicW, 'rotateY', 90)
+                    css(musicW, 'opacity', 0)
+                    css(mFace, 'translateX', 0);
+                    footer.style.display = 'none';
+                    point.style.display = 'none';
+                    setTimeout(function () {
+                        musicW.style.display = 'none'
+                    }, 1000)
+
                 }
-            })
-           
-        }
-    }
+                if (isSecond === '' || (this.index != isSecond)) {
+                    changeMusic(name, this.index);
+                    isSecond = this.index;
+                }
 
-    
+            })
+        }
+
+
     //滑屏
     mv.tool.myScroll({
         el:musicW,
         dir: 'y',
-        end:function (arr) {
-            isStart = arr;
-            touchLi()
-        }
     })
 
     goBack.addEventListener("touchstart", function () {
@@ -509,9 +501,9 @@ mv.tool.myScroll=function(init) {
     });
 
     init.el.addEventListener('touchend', function (e) {
-        var isStart = false;
+       
         if (lastPoint.x == startPoint.x && lastPoint.y == startPoint.y) {
-            isStart = true;
+            return;
         }
         var now = css(swiper, translate[dir]);
         if(now < max[dir]){
@@ -533,7 +525,7 @@ mv.tool.myScroll=function(init) {
             y: false
         }
         isFrist = true;
-        init.end && init.end(isStart);
+        init.end && init.end();
     });
 
 }
@@ -627,4 +619,30 @@ mv.tool.shade = function () {
          }, 500)
      }
 
+}
+
+
+mv.tool.tab=function(el, fn) {
+    var startPoint = {};
+    el.addEventListener('touchstart', function (e) {
+        var touch = e.changedTouches[0];
+        startPoint = {
+            x: touch.pageX,
+            y: touch.pageY
+        }
+    });
+    el.addEventListener('touchend', function (e) {
+        var touch = e.changedTouches[0];
+        var nowPoint = {
+            x: touch.pageX,
+            y: touch.pageY
+        };
+        var dis = {
+            x: Math.abs(nowPoint.x - startPoint.x),
+            y: Math.abs(nowPoint.y - startPoint.y)
+        }
+        if (dis.x < 5 && dis.y < 5) {
+            fn.call(el, e);
+        }
+    });
 }

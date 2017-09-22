@@ -350,18 +350,12 @@ footer #btnOff {
   z-index: 2;
 }
 .face-header i {
-  line-height: 4rem;
   color: #fff;
   font-size: 0.72rem;
+  padding: 0.6rem;
   display: inline-block;
-}
-.face-header i:nth-of-type(1) {
   float: left;
-  margin-left: 0.68rem;
-}
-.face-header i:nth-of-type(2) {
-  float: right;
-  margin-right: 0.44rem;
+  margin: 1.2rem 0 0 0.68rem;
 }
 .music-msg {
   height: 100%;
