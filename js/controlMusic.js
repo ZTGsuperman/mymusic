@@ -77,7 +77,7 @@ mv.app.main=function () {
                                       //这里的变量有问题，是全局变量，不好，带改进(想办法用原型)
         addEvent(oPrev, "touchstart", function () {
             sIndex--;
-            console.log(sIndex)
+           
              changeMusic(' ', sIndex);
         })
         addEvent(oNext, "touchstart", function () {
@@ -346,7 +346,7 @@ mv.app.main=function () {
                 var name = this.getElementsByTagName('strong')[0].innerHTML;
                 sIndex = this.index;
                 borderColor(this.index);
-                console.log(this.index + ',' + isSecond)
+              
                 if (this.index === isSecond) {
                     css(musicW, 'rotateY', 90)
                     css(musicW, 'opacity', 0)
